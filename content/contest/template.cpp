@@ -12,3 +12,6 @@ int main() {
 	cin.tie(0)->sync_with_stdio(0);
 	cin.exceptions(cin.failbit);
 }
+
+//in = new StreamTokenizer(new BufferedReader(new FileReader(".in")));
+//PrintWriter out = new PrintWriter(new File(NAME + ".out"));
