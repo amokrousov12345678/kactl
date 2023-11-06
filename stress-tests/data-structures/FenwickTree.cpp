@@ -20,6 +20,15 @@ int main() {
 			if (i != N) sum += t[i];
 		}
 		assert(res == ind);
+
+		if (N) {
+			int r = rand() % N;
+			int acc = 0;
+			rep(i, 0, r + 1) {
+				acc += t[i];
+			}
+			assert(acc == fw.query(r));
+		}
 	}
 	cout<<"Tests passed!"<<endl;
 }
