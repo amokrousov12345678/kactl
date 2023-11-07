@@ -35,9 +35,9 @@ struct Tree {
 		for (s[pos += n] = val; pos > 1; pos /= 2)
 			s[pos / 2] = f(s[pos & ~1], s[pos | 1]);
 	}
-	T query(int b, int e) { // query [b, e)
+	T query(int b, int e) { // query [b, e]
 		T ra = unit, rb = unit;
-		for (b += n, e += n; b < e; b /= 2, e /= 2) {
+		for (b += n, e += n, e++; b < e; b /= 2, e /= 2) {
 			if (b % 2) ra = f(ra, s[b++]);
 			if (e % 2) rb = f(s[--e], rb);
 		}
@@ -50,7 +50,7 @@ struct Tree {
 int main() {
 	{
 		maximum::Tree t(0);
-		assert(t.query(0, 0) == t.unit);
+		assert(t.query(0, -1) == t.unit);
 	}
 
 	if (0) {
@@ -62,7 +62,7 @@ int main() {
 			int i = ra() % N;
 			int j = ra() % N;
 			if (i > j) swap(i, j);
-			int v = tr.query(i, j+1);
+			int v = tr.query(i, j);
 			sum += v;
 		}
 		cout << sum << endl;
@@ -73,13 +73,13 @@ int main() {
 		maximum::Tree tr(n);
 		vi v(n, maximum::Tree::unit);
 		rep(it,0,1000000) {
-			int i = rand() % (n+1), j = rand() % (n+1);
+			int i = rand() % n, j = rand() % n;
 			int x = rand() % (n+2);
 
 			int r = rand() % 100;
 			if (r < 30) {
 				int ma = tr.unit;
-				rep(k,i,j) ma = max(ma, v[k]);
+				rep(k,i,j+1) ma = max(ma, v[k]);
 				assert(ma == tr.query(i,j));
 			}
 			else {
@@ -94,13 +94,13 @@ int main() {
 		nonabelian::Tree tr(n);
 		vi v(n);
 		rep(it,0,1000000) {
-			int i = rand() % (n+1), j = rand() % (n+1);
+			int i = rand() % n, j = rand() % n;
 			int x = rand() % 6;
 
 			int r = rand() % 100;
 			if (r < 30) {
 				int ma = tr.unit;
-				rep(k,i,j) ma = nonabelian::lut[ma][v[k]];
+				rep(k,i,j+1) ma = nonabelian::lut[ma][v[k]];
 				assert(ma == tr.query(i,j));
 			}
 			else {

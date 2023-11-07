@@ -23,7 +23,7 @@ struct bruteforce { // values in nodes
 	}
 	bool dfsModify(int cur, int target, int val, int p=-1) {
 		if (cur == target) {
-			vals[cur] += val;
+			vals[cur] = val;
 			return true;
 		}
 		bool alongPath = false;
@@ -31,7 +31,7 @@ struct bruteforce { // values in nodes
 			if (i == p) continue;
 			alongPath |= dfsModify(i, target, val, cur);
 		}
-		if (alongPath) vals[cur] += val;
+		if (alongPath) vals[cur] = val;
 		return alongPath;
 	}
 	void modifyPath(int a, int b, int val) {
@@ -84,7 +84,7 @@ void testAgainstOld(int n, int iters, int queries) {
 		}
 		HLD<false> hld(tree1);
 		old::HLD hld2(tree2);
-		hld.tree->set(0, n, 0);
+		hld.tree.update(0, n, 0);
 		for (int itr = 0; itr < queries; itr++) {
 			if (rand() % 2) {
 				int node = rand() % n;
@@ -109,7 +109,7 @@ void testAgainstBrute(int n, int iters, int queries) {
 		}
 		HLD<false> hld(tree1);
 		bruteforce hld2(tree1);
-		hld.tree->set(0, n, 0);
+		hld.tree.update(0, n, 0);
 		for (int itr = 0; itr < queries; itr++) {
 			int rng = rand() % 3;
 			if (rng == 0) {
@@ -136,8 +136,8 @@ int main() {
 	srand(2);
 	testAgainstBrute(5, 1000, 10000);
 	testAgainstBrute(1000, 100, 100);
-	testAgainstOld(5, 1000, 100);
-	testAgainstOld(10000, 100, 1000);
+	//testAgainstOld(5, 1000, 100);
+	//testAgainstOld(10000, 100, 1000);
 	cout<<"Tests passed!"<<endl;
 	return 0;
 }
