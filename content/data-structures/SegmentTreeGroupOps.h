@@ -1,6 +1,6 @@
 /**
- * Author: Simon Lindholm
- * Date: 2016-10-08
+ * Author: Anton Mokrousov
+ * Date: 2023-11-07
  * License: CC0
  * Source: me
  * Description: Segment tree with ability to assign on large intervals, and compute max of intervals.

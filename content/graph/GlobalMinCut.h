@@ -4,6 +4,7 @@
  * License: CC0
  * Source: https://en.wikipedia.org/wiki/Stoer%E2%80%93Wagner_algorithm
  * Description: Find a global minimum cut in an undirected graph, as represented by an adjacency matrix.
+ * Returns cost and list of vertices in part with source
  * Time: O(V^3)
  * Status: Stress-tested together with GomoryHu
  */
