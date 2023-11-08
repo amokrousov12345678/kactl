@@ -22,7 +22,7 @@
 typedef complex<double> C;
 typedef vector<double> vd;
 void fft(vector<C>& a) {
-	int n = sz(a), L = 31 - __builtin_clz(n);
+	int n = sz(a), L = 31 - __builtin_clz(n); assert(!(n & (n-1)));
 	static vector<complex<long double>> R(2, 1);
 	static vector<C> rt(2, 1);  // (^ 10% faster if double)
 	for (static int k = 2; k < n; k *= 2) {

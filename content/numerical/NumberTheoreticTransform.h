@@ -23,7 +23,7 @@ const ll mod = (119 << 23) + 1, root = 62; // = 998244353
 // and 483 << 21 (same root). The last two are > 10^9.
 typedef vector<ll> vl;
 void ntt(vl &a) {
-	int n = sz(a), L = 31 - __builtin_clz(n);
+	int n = sz(a), L = 31 - __builtin_clz(n); assert(!(n & (n-1)));
 	static vl rt(2, 1);
 	for (static int k = 2, s = 2; k < n; k *= 2, s++) {
 		rt.resize(n);

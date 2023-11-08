@@ -12,6 +12,7 @@
 #pragma once
 
 void FST(vi& a, bool inv) {
+	assert(!(sz(a) & (sz(a)-1)));
 	for (int n = sz(a), step = 1; step < n; step *= 2) {
 		for (int i = 0; i < n; i += 2 * step) rep(j,i,i+step) {
 			int &u = a[j], &v = a[j + step]; tie(u, v) =
