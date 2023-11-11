@@ -13,6 +13,7 @@ typedef vector<double> vd;
 const double eps = 1e-12;
 
 int solveLinear(vector<vd>& A, vd& b, vd& x) {
+	assert(false);
 	int n = sz(A), m = sz(x), rank = 0, br, bc;
 	if (n) assert(sz(A[0]) == m);
 	vi col(m); iota(all(col), 0);
