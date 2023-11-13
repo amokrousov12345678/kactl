@@ -3,6 +3,7 @@
 const int nmax = 4, mmax = 4, nmmax = 10;
 
 #include "../../content/numerical/SolveLinearModPrime.h"
+#include "../../content/numerical/MatrixInverse-mod.h"
 
 template<class F>
 void rec(int i, int j, vector<vi>& A, F f) {
@@ -53,7 +54,33 @@ int main() {
 				vi x2 = x, b2 = b;
 				int r = solveLinear(A2, b2, x2);
 				if (sols == 0) assert(r == -1);
-				else if (sols == 1) assert(r == m);
+				else if (sols == 1) {
+					assert(r == m);
+					if (n == m) {
+						A2 = A;
+						auto r2 = matInv(A2);
+						assert(r2 == n);
+						rep(i,0,n) {
+							rep(j,0,n) {
+								assert(A2[i][j] >= 0 && A2[i][j] < mod);
+							}
+						}
+						rep(i,0,n) {
+							rep(j,0,n) {
+								int acc = 0;
+								rep(k, 0, n) {
+									acc += (1ll*A[i][k]*A2[k][j]) % mod;
+									acc %= mod;
+								}
+								if (i==j) {
+									assert(acc==1);
+								} else {
+									assert(acc==0);
+								}
+							}
+						}
+					}
+				}
 				else assert(r < m);
 				if (sols == 1) assert(x2 == theX);
 			});

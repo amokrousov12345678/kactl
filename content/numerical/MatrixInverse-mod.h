@@ -13,9 +13,9 @@
 
 #include "../number-theory/ModPow.h"
 
-int matInv(vector<vector<ll>>& A) {
+int matInv(vector<vector<int>>& A) {
 	int n = sz(A); vi col(n);
-	vector<vector<ll>> tmp(n, vector<ll>(n));
+	vector<vector<int>> tmp(n, vector<int>(n));
 	rep(i,0,n) tmp[i][i] = 1, col[i] = i;
 
 	rep(i,0,n) {
@@ -26,7 +26,8 @@ int matInv(vector<vector<ll>>& A) {
 		return i;
 found:
 		A[i].swap(A[r]); tmp[i].swap(tmp[r]);
-		rep(j,0,n) swap(A[j][i], A[j][c]), swap(tmp[j][i], tmp[j][c]);
+		rep(j,0,n)
+			swap(A[j][i], A[j][c]), swap(tmp[j][i], tmp[j][c]);
 		swap(col[i], col[c]);
 		ll v = modpow(A[i][i], mod - 2);
 		rep(j,i+1,n) {
