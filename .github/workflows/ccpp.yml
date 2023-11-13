@@ -22,7 +22,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: pdf-reference
-        path: kactl.pdf
+        path: reference.pdf
     - name: Run compiles
       run: make test-compiles
     - name: Run stress tests

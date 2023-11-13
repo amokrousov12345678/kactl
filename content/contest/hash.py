@@ -2,6 +2,7 @@
 * Author: Anton Mokrousov
 * Description: Hashes a file, ignoring all
 * whitespace and comments.
+* Time: O(0)
 '''
 
 import hashlib, pathlib, re, sys
