@@ -1,5 +1,9 @@
-# Hashes a file, ignoring all whitespace and comments. Use for
-# verifying that code was correctly typed.
+'''
+* Author: Anton Mokrousov
+* Description: Hashes a file, ignoring all
+* whitespace and comments.
+'''
+
 import hashlib, pathlib, re, sys
 if len(sys.argv) >= 2:
     data_b = pathlib.Path(sys.argv[1]).read_bytes()
