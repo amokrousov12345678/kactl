@@ -7,6 +7,7 @@
 
 \section{Misc. algorithms}
 	\kactlimport{TernarySearch.h}
+	\kactlimport{GoodRandom.h}
 	\kactlimport{LIS.h}
 	\kactlimport{FastKnapsack.h}
 
@@ -35,7 +36,9 @@
 		\begin{itemize}
 			\item \lstinline{#pragma GCC optimize ("Ofast")} will make GCC auto-vectorize loops and optimizes floating points better.
 			\item \lstinline{#pragma GCC target ("avx2")} can double performance of vectorized code, but causes crashes on old machines.
+			\item \lstinline{#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,avx,avx2,fma")} --- full list of pragmas.
 			\item \lstinline{#pragma GCC optimize ("trapv")} kills the program on integer overflows (but is really slow).
+			\item \lstinline{#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")} for heavy bit operations like popcount, ctz.
 		\end{itemize}
 	\kactlimport{FastMod.h}
 	\kactlimport{FastInput.h}
