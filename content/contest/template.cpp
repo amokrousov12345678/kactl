@@ -11,6 +11,8 @@ typedef vector<int> vi;
 int main() {
 	cin.tie(0)->sync_with_stdio(0);
 	cin.exceptions(cin.failbit);
+	cout << setprecision(15) << fixed;
+	//((float)(clock() - t0)) / CLOCKS_PER_SEC
 }
 
 //in = new StreamTokenizer(new BufferedReader(new FileReader(".in")));
