@@ -10,6 +10,6 @@
 
 random_device rd; mt19937_64 gen(rd());
 
-int blessRng(ll a, ll b) {
+ll blessRng(ll a, ll b) {
 	uniform_int_distribution<ll> rnd(a,b); return rnd(gen);
 }
