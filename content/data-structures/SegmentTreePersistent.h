@@ -15,8 +15,8 @@ struct Node {
 	static constexpr T unit = INT_MIN;
 	T f(T a, T b) { return max(a, b); } // (any associative fn)
 	Node *l = 0, *r = 0; T val = unit; int lo, hi;
-	Node(int sz): Node(0, sz-1) {};
-	Node(int lo, int hi): lo(lo), hi(hi) {};
+	Node(int sz): Node(0, sz-1) {}
+	Node(int lo, int hi): lo(lo), hi(hi) {}
 };
 
 Node* update(Node* v, int pos, T val) {

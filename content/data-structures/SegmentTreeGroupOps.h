@@ -60,12 +60,12 @@ struct SegTree {
 		return ans;
 	}
 
-	SegTree(int n): SegTree(vector<T>(n, unit)) {};
+	SegTree(int n): SegTree(vector<T>(n, unit)) {}
 	SegTree(const vector<T>& vals) : n(sz(vals)), mas(4*n, unit), def(4*n, punit) {
 		build(vals, 1, 0, sz(vals)-1);
 	}
 	void update(int l, int r, PT val) {
 		update(l, r, val, 1, 0, n-1);
-	};
-	T query(int l, int r) { return query(l, r, 1, 0, n-1); };
+	}
+	T query(int l, int r) { return query(l, r, 1, 0, n-1); }
 };
