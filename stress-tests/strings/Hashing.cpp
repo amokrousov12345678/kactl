@@ -16,8 +16,8 @@ int main() {
 		set<ull> hashes;
 
 		// HashInterval
-		rep(i,0,n+1) rep(j,i,n+1) {
-			string sub = s.substr(i, j - i);
+		rep(i,0,n) rep(j,i,n) {
+			string sub = s.substr(i, j - i + 1);
 			ull hash = hashString(sub).get();
 			assert(hi.hashInterval(i, j).get() == hash);
 			hashes.insert(hash);
@@ -29,7 +29,7 @@ int main() {
 			auto ve = getHashes(s, le);
 			assert(sz(ve) == n-le+1);
 			rep(i,0,n-le+1) {
-				assert(ve[i].get() == hi.hashInterval(i, i + le).get());
+				assert(ve[i].get() == hi.hashInterval(i, i + le - 1).get());
 			}
 		}
 

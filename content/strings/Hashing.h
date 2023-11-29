@@ -34,12 +34,13 @@ struct HashInterval {
 			ha[i+1] = ha[i] * C + str[i],
 			pw[i+1] = pw[i] * C;
 	}
-	H hashInterval(int a, int b) { // hash [a, b)
-		return ha[b] - ha[a] * pw[b - a];
+	H hashInterval(int a, int b) { // hash [a, b]
+		return ha[b + 1] - ha[a] * pw[b + 1 - a];
 	}
 };
 
 vector<H> getHashes(string& str, int length) {
+	//for all substrs of given len
 	if (sz(str) < length) return {};
 	H h = 0, pw = 1;
 	rep(i,0,length)
