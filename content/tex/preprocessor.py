@@ -216,14 +216,14 @@ def print_header(data, outstream):
         # Nothing new on the page.
         return
 
-    ind = lines.index(until) + 1
-    header_length = len("".join(lines[:ind]))
+    print_ind = ind = lines.index(until) + 1
+    header_length = len("".join(lines[:print_ind]))
     while header_length > 100:
-        ind -= 1
-        header_length = len("".join(lines[:ind]))
+        print_ind -= 1
+        header_length = len("".join(lines[:print_ind]))
     def adjust(name):
         return name if name.startswith('.') else name.split('.')[0]
-    output = r"\enspace{}".join(map(adjust, lines[:ind]))
+    output = r"\enspace{}".join(map(adjust, lines[:print_ind]))
     font_size = 10
     if header_length > 150:
         font_size = 8
