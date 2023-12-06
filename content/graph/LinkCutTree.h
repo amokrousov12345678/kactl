@@ -18,6 +18,7 @@ struct Node { // Splay tree. Root's pp contains tree's parent.
 		if (c[0]) c[0]->p = this;
 		if (c[1]) c[1]->p = this;
 		// (+ update sum of subtree elements etc. if wanted)
+		// Update values in your code ONLY after splay
 	}
 	void pushFlip() {
 		if (!flip) return;
@@ -79,8 +80,7 @@ struct LinkCut {
 		return nu == access(&node[v])->first();
 	}
 	void makeRoot(Node* u) { /// Move u to root of represented tree.
-		access(u);
-		u->splay();
+		access(u); u->splay();
 		if(u->c[0]) {
 			u->c[0]->p = 0;
 			u->c[0]->flip ^= 1;
@@ -88,6 +88,18 @@ struct LinkCut {
 			u->c[0] = 0;
 			u->fix();
 		}
+	}
+	void makeRoot(int u) { //set u as root, for rqs on paths
+		makeRoot(&node[u]);
+	}
+	int getRoot(int u) {
+		access(&node[u]); node[u].splay();
+		return node[u].first() - node.data();
+	}
+	int getPar(int u) {
+		Node *x = &node[u]; node[u].splay();
+		auto par = (x->c[0] ?: x->pp);
+		return par ? par - node.data() : -1;
 	}
 	Node* access(Node* u) { /// Move u to root aux tree. Return the root of the root aux tree.
 		u->splay();
