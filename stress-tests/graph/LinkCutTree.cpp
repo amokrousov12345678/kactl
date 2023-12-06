@@ -3,6 +3,15 @@
 #include "../../content/graph/LinkCutTree.h"
 #include "../../content/data-structures/UnionFind.h"
 
+void dfs(const vector<vi>& g, vi& pars, vi& roots, int v, int par, int root) {
+	if (roots[v] != -1) return;
+	roots[v] = root;
+	pars[v] = par;
+	for (auto& it: g[v]) {
+		dfs(g, pars, roots, it, v, root);
+	}
+}
+
 int main() {
 	srand(2);
 	LinkCut lczero(0);
@@ -35,7 +44,25 @@ int main() {
 					assert(lc.connected(a, b) == c);
 				}
 			}
+			vector<vi> g(N);
+			vi par(N, -1), root(N, -1);
+			int newRoot = (rand() >> 4) % N;
+			lc.makeRoot(newRoot);
+			for (auto &ed: edges) {
+				g[ed.first].push_back(ed.second);
+				g[ed.second].push_back(ed.first);
+			}
+			dfs(g, par, root, newRoot, -1, newRoot);
+			rep(i,0,N) {
+				if (root[i] == -1) {
+					assert(lc.getRoot(i) != newRoot);
+					continue;
+				}
+				assert(lc.getRoot(i) == newRoot);
+				assert(lc.getPar(i) == par[i]);
+			}
 		}
 	}
+
 	cout<<"Tests passed!"<<endl;
 }
