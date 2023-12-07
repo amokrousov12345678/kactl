@@ -98,8 +98,12 @@ struct LinkCut {
 	}
 	int getPar(int u) {
 		Node *x = &node[u]; node[u].splay();
-		auto par = (x->c[0] ?: x->pp);
-		return par ? par - node.data() : -1;
+		if (x->c[0]) {
+			x = x->c[0]; x->pushFlip();
+			while (x->c[1]) x = x->c[1], x->pushFlip();
+			return x - node.data();
+		}
+		return x->pp ? x->pp - node.data() : -1;
 	}
 	Node* access(Node* u) { /// Move u to root aux tree. Return the root of the root aux tree.
 		u->splay();
