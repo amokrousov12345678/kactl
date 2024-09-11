@@ -26,7 +26,7 @@ template<class F> void each(Node* n, F f) {
 
 pair<Node*, Node*> split(Node* n, int k) {
 	if (!n) return {};
-	if (cnt(n->l) >= k) { // "n->val >= k" for lower_bound(k)
+	if (cnt(n->l) >= k) { // "n->val >= k", equal to right
 		auto pa = split(n->l, k);
 		n->l = pa.second;
 		n->recalc();
